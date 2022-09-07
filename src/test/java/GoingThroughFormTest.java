@@ -1,4 +1,5 @@
 import forms.CardOnePage;
+import forms.CardTwoPage;
 import forms.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,9 +30,17 @@ public class GoingThroughFormTest extends BaseTest {
         cardOnePage.acceptTerms();
         cardOnePage.clickNextBtn();
 
+        CardTwoPage cardTwoPage = new CardTwoPage();
+        String errorMessageStep3 = "filling the form correctly and clicking on 'next' button should open 'card 2' page";
+        Assert.assertTrue(cardTwoPage.state().waitForDisplayed(), errorMessageStep3);
 
-//        STEP: Choose 2 random interest, upload image, click "Next" button.
+
+
+//        STEP: Choose 3 random interest, upload image, click "Next" button.
 //        RESULT: The '3' card is open.
+        cardTwoPage.uploadImage();
+        cardTwoPage.selectInterests();
+
     }
 
 }
