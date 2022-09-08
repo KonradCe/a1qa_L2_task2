@@ -5,6 +5,7 @@ import aquality.selenium.elements.interfaces.IButton;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
 import utils.TestDataUtils;
+import aquality.selenium.core.configurations.LoggerConfiguration;
 
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -29,6 +30,7 @@ public class CardTwoPage extends Form {
     }
 
     private static void copyImagePathToClipboard() {
+
         String pathToAvatar = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "avatar.png";
         StringSelection stringSelection = new StringSelection(pathToAvatar);
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();

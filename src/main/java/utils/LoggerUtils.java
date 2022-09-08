@@ -1,13 +1,15 @@
 package utils;
 
 import aquality.selenium.browser.AqualityServices;
+import aquality.selenium.core.localization.ILocalizedLogger;
 
 public class LoggerUtils {
-    private static void info(String message) {
-        AqualityServices.getLogger().info(message);
+
+    private static final ILocalizedLogger localizedLogger = AqualityServices.getLocalizedLogger();
+
+    public static void info(String message) {
+        localizedLogger.info(message);
     }
 
-    private static void debug(String message) {
-        AqualityServices.getLogger().debug(message);
-    }
 }
+

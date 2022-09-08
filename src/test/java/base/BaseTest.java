@@ -4,6 +4,8 @@ import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.browser.Browser;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import utils.LoggerUtils;
 
 public class BaseTest {
 
@@ -11,17 +13,20 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        // TODO: log actions
-        System.out.println("test setup");
+        LoggerUtils.info("test set up");
         browser = AqualityServices.getBrowser();
         browser.maximize();
     }
 
     @AfterClass
     public void tearDown() {
-        // TODO: log message here
-        System.out.println("test tear down");
+        LoggerUtils.info("test tear down");
         browser.quit();
+    }
+
+    @BeforeSuite
+    public void setupLogger() {
+        LoggerUtils.info("start of the testing suite");
     }
 
 

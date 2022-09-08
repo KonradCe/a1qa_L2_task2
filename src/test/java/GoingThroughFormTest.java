@@ -5,6 +5,7 @@ import forms.CardTwoPage;
 import forms.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.LoggerUtils;
 import utils.TestDataUtils;
 
 public class GoingThroughFormTest extends BaseTest {
@@ -12,6 +13,7 @@ public class GoingThroughFormTest extends BaseTest {
     @Test
     public void goingThroughFormTest() {
 
+        LoggerUtils.info("Completing the form test - step 1/4");
 //        STEP: Navigate to home page.
 //        RESULT: Welcome page is open.
         browser.goTo(TestDataUtils.getHomePageUrl());
@@ -19,6 +21,7 @@ public class GoingThroughFormTest extends BaseTest {
         String errorMessageStep1 = "opening home page should result in home page being open";
         Assert.assertTrue(homePage.state().waitForDisplayed(), errorMessageStep1);
 
+        LoggerUtils.info("Completing the form test - step 2/4");
 //        STEP: Click the link (in text 'Please click HERE to GO to the next page') to navigate the next page.
 //        RESULT: The '1' card is open.
         homePage.goToNextPage();
@@ -26,6 +29,7 @@ public class GoingThroughFormTest extends BaseTest {
         String errorMessageStep2 = "clicking on the link should open 'card 1' page";
         Assert.assertTrue(cardOnePage.state().waitForDisplayed(), errorMessageStep2);
 
+        LoggerUtils.info("Completing the form test - step 3/4");
 //        STEP: Input random valid password, email, accept the terms of use and click "next" button.
 //        RESULT: The '2' card is open.
         cardOnePage.fillOutTheForm();
@@ -36,6 +40,7 @@ public class GoingThroughFormTest extends BaseTest {
         String errorMessageStep3 = "filling the form correctly and clicking on 'next' button should open 'card 2' page";
         Assert.assertTrue(cardTwoPage.state().waitForDisplayed(), errorMessageStep3);
 
+        LoggerUtils.info("Completing the form test - step 4/4");
 //        STEP: Choose 3 random interest, upload image, click "Next" button.
 //        RESULT: The '3' card is open.
         cardTwoPage.selectInterests();
