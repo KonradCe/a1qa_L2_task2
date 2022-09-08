@@ -19,8 +19,8 @@ public class CookiesFormTest extends BaseTest {
         Assert.assertTrue(homePage.state().waitForDisplayed(), errorMessageStep1);
 
         LoggerUtils.info("Accept cookies test - step 2/2");
-//        Accept cookies.
-//        Form is closed.
+//        STEP: Accept cookies.
+//        RESULT: Form is closed.
         homePage.goToNextPage();
         CardOnePage cardOnePage = new CardOnePage();
         cardOnePage.acceptCookies();
