@@ -1,4 +1,6 @@
+import base.BaseTest;
 import forms.CardOnePage;
+import forms.CardThreePage;
 import forms.CardTwoPage;
 import forms.HomePage;
 import org.testng.Assert;
@@ -34,13 +36,13 @@ public class GoingThroughFormTest extends BaseTest {
         String errorMessageStep3 = "filling the form correctly and clicking on 'next' button should open 'card 2' page";
         Assert.assertTrue(cardTwoPage.state().waitForDisplayed(), errorMessageStep3);
 
-
-
 //        STEP: Choose 3 random interest, upload image, click "Next" button.
 //        RESULT: The '3' card is open.
-        cardTwoPage.uploadImage();
         cardTwoPage.selectInterests();
-
+        cardTwoPage.uploadImage();
+        cardTwoPage.clickNext();
+        CardThreePage cardThreePage = new CardThreePage();
+        String errorMessageStep4 = "clicking next button after filling the form should open 'card 3' page";
+        Assert.assertTrue(cardThreePage.state().waitForDisplayed(), errorMessageStep4);
     }
-
 }

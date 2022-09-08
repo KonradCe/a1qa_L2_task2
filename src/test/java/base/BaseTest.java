@@ -1,3 +1,5 @@
+package base;
+
 import aquality.selenium.browser.AqualityServices;
 import aquality.selenium.browser.Browser;
 import org.testng.annotations.AfterClass;
@@ -5,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 
 public class BaseTest {
 
-    Browser browser;
+    protected Browser browser;
 
     @BeforeClass
     public void setUp() {
@@ -19,7 +21,7 @@ public class BaseTest {
     public void tearDown() {
         // TODO: log message here
         System.out.println("test tear down");
-//        browser.quit();
+        browser.quit();
     }
 
 

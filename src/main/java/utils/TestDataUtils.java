@@ -3,6 +3,7 @@ package utils;
 import aquality.selenium.core.utilities.ISettingsFile;
 import aquality.selenium.core.utilities.JsonSettingsFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -15,7 +16,14 @@ public class TestDataUtils {
     }
 
     public static List<String> getInterestsToSelect() {
-        return testData.getList("interests");
+        Random random = new Random();
+        List<String> allIntrests = testData.getList("/interests");
+        ArrayList<String> intrestsToSelect = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            intrestsToSelect.add(allIntrests.remove(random.nextInt(allIntrests.size())));
+        }
+        // TODO:log interests
+        return intrestsToSelect;
     }
 
     public static String createValidPassword() {
@@ -24,8 +32,8 @@ public class TestDataUtils {
         int numberOfDigits = random.nextInt(5) + 1;
         StringBuilder password = new StringBuilder();
 
-        for (int i = 0; i < numberOfChars; i ++) {
-            char randomChar = (char)(random.nextInt(26) + 'a');
+        for (int i = 0; i < numberOfChars; i++) {
+            char randomChar = (char) (random.nextInt(26) + 'a');
             if (i % 2 == 0) {
                 randomChar = Character.toUpperCase(randomChar);
             }
@@ -35,17 +43,15 @@ public class TestDataUtils {
             int randomDigit = random.nextInt(10);
             password.append(randomDigit);
         }
-
-        System.out.printf("Generated password: %s", password);
-
+        // TODO: log password
         return password.toString();
     }
 
     public static String createRandomWord(int numberOfLettersInWord) {
         Random random = new Random();
         StringBuilder word = new StringBuilder();
-        for (int i = 0; i < numberOfLettersInWord; i ++) {
-            char randomChar = (char)(random.nextInt(26) + 'a');
+        for (int i = 0; i < numberOfLettersInWord; i++) {
+            char randomChar = (char) (random.nextInt(26) + 'a');
             word.append(randomChar);
         }
         return word.toString();

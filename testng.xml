@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Task2 Suite" verbose="1">
+    <test name="Userinterface">
+        <classes>
+            <class name="GoingThroughFormTest"/>
+            <class name="HelpFormTest"/>
+            <class name="CookiesFormTest"/>
+            <class name="TimerTest"/>
+        </classes>
+    </test>
+</suite>

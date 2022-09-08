@@ -10,6 +10,10 @@ import utils.TestDataUtils;
 public class CardOnePage extends Form {
     private final ITextBox passwordTextBox = getElementFactory().getTextBox(
             By.xpath("//input[contains(@placeholder, 'Choose Password')]"), "password text box");
+    private final ICheckBox termsAndConditionsCheckbox = getElementFactory().getCheckBox(
+            By.xpath("//span[@class='checkbox__box']"), "terms and conditions checkbox");
+    private final IButton nextButton = getElementFactory().getButton(
+            By.xpath("//a[@class='button--secondary' and text()[contains(., 'Next')]]"), "next button");
 
     private final ITextBox emailLocalTextBox = getElementFactory().getTextBox(
             By.xpath("//input[contains(@placeholder, 'Your email')]"), "email name text box");
@@ -20,15 +24,18 @@ public class CardOnePage extends Form {
     private final IButton emailSpecificDomainElement = getElementFactory().getButton(
             By.xpath("//div[@class='dropdown__list-item' and text()[contains(., '.org')]]"), "element with .org domain");
 
-    private final ICheckBox termsAndConditionsCheckbox = getElementFactory().getCheckBox(
-            By.xpath("//span[@class='checkbox__box']"), "terms and conditions checkbox");
-    private final IButton nextButton = getElementFactory().getButton(
-            By.xpath("//a[@class='button--secondary' and text()[contains(., 'Next')]]"), "next button");
-
     private final IButton hideHelpButton = getElementFactory().getButton(
             By.xpath("//button[contains(@class, 'help-form__send-to-bottom-button')]"), "hide help from button");
+    private final IButton hiddenHelpFrom = getElementFactory().getButton(
+            By.xpath("//div[contains(@class, 'is-hidden')]"), "hidden help from");
+
     private final IButton acceptCookiesButton = getElementFactory().getButton(
             By.xpath("//button[contains(text(), 'Not really')]"), "accept cookies button");
+    private final IButton cookiesBanner = getElementFactory().getButton(
+            By.xpath("//div[@class='cookies']"), "cookies banner");
+
+    private final IButton timer = getElementFactory().getButton(
+            By.xpath("//div[contains(@class, 'timer')]"), "timer");
 
 
     public CardOnePage() {
@@ -66,7 +73,20 @@ public class CardOnePage extends Form {
         hideHelpButton.click();
     }
 
+    public boolean isHelpFormHidden() {
+
+        return hiddenHelpFrom.state().isExist();
+    }
+
     public void acceptCookies() {
         acceptCookiesButton.click();
+    }
+
+    public boolean isCookiesFormOpen() {
+        return cookiesBanner.state().isExist();
+    }
+
+    public String getTimerValue() {
+        return timer.getText();
     }
 }
