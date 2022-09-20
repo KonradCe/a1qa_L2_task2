@@ -1,30 +1,12 @@
 package utils;
 
-import aquality.selenium.core.utilities.ISettingsFile;
-import aquality.selenium.core.utilities.JsonSettingsFile;
+import aquality.selenium.core.logging.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-public class TestDataUtils {
+public class StringUtils {
 
-    private static final ISettingsFile testData = new JsonSettingsFile("test_data.json");
-
-    public static String getHomePageUrl() {
-        return testData.getValue("/home_page_url").toString();
-    }
-
-    public static List<String> getInterestsToSelect() {
-        Random random = new Random();
-        List<String> allIntrests = testData.getList("/interests");
-        ArrayList<String> intrestsToSelect = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            intrestsToSelect.add(allIntrests.remove(random.nextInt(allIntrests.size())));
-        }
-        // TODO:log interests
-        return intrestsToSelect;
-    }
+    private final static Logger logger = Logger.getInstance();
 
     public static String createValidPassword() {
         Random random = new Random();
@@ -43,7 +25,7 @@ public class TestDataUtils {
             int randomDigit = random.nextInt(10);
             password.append(randomDigit);
         }
-        // TODO: log password
+        logger.debug("Generated password is: " + password);
         return password.toString();
     }
 
@@ -56,6 +38,4 @@ public class TestDataUtils {
         }
         return word.toString();
     }
-
-
 }

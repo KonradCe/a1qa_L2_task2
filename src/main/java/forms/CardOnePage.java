@@ -5,9 +5,10 @@ import aquality.selenium.elements.interfaces.ICheckBox;
 import aquality.selenium.elements.interfaces.ITextBox;
 import aquality.selenium.forms.Form;
 import org.openqa.selenium.By;
-import utils.TestDataUtils;
+import utils.StringUtils;
 
 public class CardOnePage extends Form {
+
     private final ITextBox passwordTextBox = getElementFactory().getTextBox(
             By.xpath("//input[contains(@placeholder, 'Choose Password')]"), "password text box");
     private final ICheckBox termsAndConditionsCheckbox = getElementFactory().getCheckBox(
@@ -37,9 +38,8 @@ public class CardOnePage extends Form {
     private final IButton timer = getElementFactory().getButton(
             By.xpath("//div[contains(@class, 'timer')]"), "timer");
 
-
     public CardOnePage() {
-        super(By.xpath("//div[@class='page-indicator' and text()[contains(.,'1 / 4')]]"), "card 1 page - email and password form");
+        super(By.xpath("//div[@class='page-indicator' and text()[contains(.,'1')]]"), "card 1 page - email and password form");
     }
 
     public void fillOutTheForm() {
@@ -48,12 +48,11 @@ public class CardOnePage extends Form {
     }
 
     private void fillOutPasswordAndEmail() {
-
-        String validPassword = TestDataUtils.createValidPassword();
+        String validPassword = StringUtils.createValidPassword();
 
         passwordTextBox.clearAndType(validPassword);
-        emailLocalTextBox.clearAndType(validPassword.charAt(1) + "_" + TestDataUtils.createRandomWord(5));
-        emailServerTextBox.clearAndType(TestDataUtils.createRandomWord(8));
+        emailLocalTextBox.clearAndType(validPassword.charAt(1) + "_" + StringUtils.createRandomWord(5));
+        emailServerTextBox.clearAndType(StringUtils.createRandomWord(8));
     }
 
     private void selectDomain() {
@@ -74,7 +73,6 @@ public class CardOnePage extends Form {
     }
 
     public boolean isHelpFormHidden() {
-
         return hiddenHelpFrom.state().isExist();
     }
 
@@ -83,7 +81,7 @@ public class CardOnePage extends Form {
     }
 
     public boolean isCookiesFormOpen() {
-        return cookiesBanner.state().isExist();
+        return cookiesBanner.state().isDisplayed();
     }
 
     public String getTimerValue() {
